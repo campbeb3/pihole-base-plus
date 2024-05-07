@@ -69,6 +69,7 @@ fi
         && rm -f /tmp/cloudflared.deb \
         && useradd -s /usr/sbin/nologin -r -M cloudflared \
         && chown cloudflared:cloudflared /usr/local/bin/cloudflared
+  fi
 
 # clean cloudflared config
 mkdir -p /etc/cloudflared \
