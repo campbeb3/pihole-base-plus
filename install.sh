@@ -54,6 +54,7 @@ then
 elif [[ ${TARGETPLATFORM} =~ 'arm/v6' ]]
 then
     #curl -sL https://hobin.ca/cloudflared/latest?type=deb -o /tmp/cloudflared.deb
+    #curl -sL https://hobin.ca/cloudflared/releases/2022.3.1/cloudflared_2022.3.1_arm.deb -o /tmp/cloudflared.deb
     wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm
 else 
     echo "$(date "+%d.%m.%Y %T") Unsupported platform - cloudflared not added" >> /build.info
@@ -68,18 +69,6 @@ fi
         && rm -f /tmp/cloudflared.deb \
         && useradd -s /usr/sbin/nologin -r -M cloudflared \
         && chown cloudflared:cloudflared /usr/local/bin/cloudflared
-  fi 
-#elif [[ ${TARGETPLATFORM} =~ 'arm/v6' ]]
-#then
-#    curl -sL https://hobin.ca/cloudflared/releases/2022.3.1/cloudflared_2022.3.1_arm.deb -o /tmp/cloudflared.deb
-
-else 
-    echo "$(date "+%d.%m.%Y %T") Unsupported platform - cloudflared not added" >> /build.info
-fi
-apt install /tmp/cloudflared.deb \
-    && rm -f /tmp/cloudflared.deb \
-    && useradd -s /usr/sbin/nologin -r -M cloudflared \
-    && chown cloudflared:cloudflared /usr/local/bin/cloudflared
 
 # clean cloudflared config
 mkdir -p /etc/cloudflared \
